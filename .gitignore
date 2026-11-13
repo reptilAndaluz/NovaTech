@@ -1,0 +1,28 @@
+# Credenciales de Docker
+/.env
+
+# Laravel (por si html/ se versiona desde este repo)
+/html/vendor/
+/html/node_modules/
+/html/.env
+/html/.env.backup
+/html/.env.production
+/html/.phpunit.result.cache
+/html/public/hot
+/html/public/storage
+/html/storage/*.key
+/html/storage/logs/*
+/html/storage/framework/cache/data/*
+/html/storage/framework/sessions/*
+/html/storage/framework/views/*
+/html/bootstrap/cache/*.php
+/html/auth.json
+
+# Compilados de frontend
+/html/public/build
+
+# IDE / SO
+.idea/
+.vscode/
+.DS_Store
+*.log
