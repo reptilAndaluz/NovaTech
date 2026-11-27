@@ -113,7 +113,7 @@
                 ],
                 [
                     'id' => 'portfolioModal3',
-                    'image' => 'assets/img/portfolio/3.png',
+                    'image' => 'assets/img/portfolio/6.png',
                     'title' => 'Acompañamiento con Salida',
                     'subtitle' => 'Formación práctica y autonomía',
                     'intro' => 'Te enseñamos a gestionar tu negocio digital en lugar de crear dependencia permanente.',
@@ -123,7 +123,7 @@
                 ],
                 [
                     'id' => 'portfolioModal4',
-                    'image' => 'assets/img/portfolio/4.png',
+                    'image' => 'assets/img/portfolio/3.png',
                     'title' => 'Privacidad Garantizada',
                     'subtitle' => 'Servidor propio y seguridad',
                     'intro' => 'Tus datos financieros y administrativos siempre protegidos y accesibles.',
@@ -133,7 +133,7 @@
                 ],
                 [
                     'id' => 'portfolioModal5',
-                    'image' => 'assets/img/portfolio/5.png',
+                    'image' => 'assets/img/portfolio/4.png',
                     'title' => 'Web y Automatización',
                     'subtitle' => 'Digitaliza Fácil',
                     'intro' => 'La puerta de entrada para modernizar tu negocio desde cero.',
@@ -143,7 +143,7 @@
                 ],
                 [
                     'id' => 'portfolioModal6',
-                    'image' => 'assets/img/portfolio/6.png',
+                    'image' => 'assets/img/portfolio/5.png',
                     'title' => 'Gestión de Stock y Caja',
                     'subtitle' => 'Decisiones con datos claros',
                     'intro' => 'Centraliza ventas, gastos, inventario y clientes en un mismo lugar.',
