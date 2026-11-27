@@ -84,12 +84,14 @@ Comprueba que ambos contenedores están activos (`laravel_app` en el puerto `818
 docker compose ps
 ```
 
-### 4. Instalar dependencias y preparar Laravel
+### 4. Instalar dependencias, configurar permisos y preparar Laravel
 
 Ejecuta dentro del contenedor `app`:
 
 ```bash
 docker compose exec app composer install
+docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+docker compose exec app chmod -R 775 storage bootstrap/cache
 docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate
 ```
@@ -118,6 +120,25 @@ Abre en tu navegador:
 
 ## Solución de problemas frecuentes
 
+- **Error de permisos en `storage/` o `bootstrap/cache/` (`Permission denied` en la web):**
+  Apache corre dentro del contenedor como `www-data`. Asegúrate de darle permisos de escritura a esas carpetas:
+  ```bash
+  docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+  docker compose exec app chmod -R 775 storage bootstrap/cache
+  ```
+- **Error de permisos al ejecutar `docker` (`permission denied while trying to connect to the Docker daemon socket`):**
+  Añade tu usuario al grupo `docker` y recarga la sesión:
+  ```bash
+  sudo usermod -aG docker $USER
+  newgrp docker
+  ```
+- **Error de permisos al editar archivos en `html/` o usar `git` en el equipo anfitrión:**
+  Los archivos creados desde el contenedor (`composer`, `artisan`) pueden quedar como `root:root`. Devuelve la propiedad a tu usuario y restaura los permisos de escritura de Laravel:
+  ```bash
+  sudo chown -R $USER:$USER html/
+  docker compose exec app chown -R www-data:www-data storage bootstrap/cache
+  docker compose exec app chmod -R 775 storage bootstrap/cache
+  ```
 - **Conflicto de nombre de contenedor (`laravel_mysql` o `laravel_app` ya está en uso):**
   Si otro proyecto Docker dejó un contenedor con el mismo `container_name`, elimínalo (`docker rm laravel_mysql`) o cambia/elimina `container_name` en [docker-compose.yml](docker-compose.yml).
 - **Error `SQLSTATE[HY000] [1045] Access denied`:**
