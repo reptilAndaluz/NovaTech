@@ -93,7 +93,7 @@
             $pillars = [
                 [
                     'id' => 'portfolioModal1',
-                    'image' => 'assets/img/portfolio/1.jpg',
+                    'image' => 'assets/img/portfolio/1.png',
                     'title' => 'Presencia Física',
                     'subtitle' => 'Asistencia en tu local',
                     'intro' => 'Nos desplazamos a tu establecimiento para conocer tus necesidades de primera mano.',
@@ -103,7 +103,7 @@
                 ],
                 [
                     'id' => 'portfolioModal2',
-                    'image' => 'assets/img/portfolio/2.jpg',
+                    'image' => 'assets/img/portfolio/2.png',
                     'title' => 'Cero Curva de Aprendizaje',
                     'subtitle' => 'Consultas por voz o texto',
                     'intro' => 'Tu negocio te responde con frases cotidianas, sin paneles complejos.',
@@ -113,7 +113,7 @@
                 ],
                 [
                     'id' => 'portfolioModal3',
-                    'image' => 'assets/img/portfolio/3.jpg',
+                    'image' => 'assets/img/portfolio/3.png',
                     'title' => 'Acompañamiento con Salida',
                     'subtitle' => 'Formación práctica y autonomía',
                     'intro' => 'Te enseñamos a gestionar tu negocio digital en lugar de crear dependencia permanente.',
@@ -123,7 +123,7 @@
                 ],
                 [
                     'id' => 'portfolioModal4',
-                    'image' => 'assets/img/portfolio/4.jpg',
+                    'image' => 'assets/img/portfolio/4.png',
                     'title' => 'Privacidad Garantizada',
                     'subtitle' => 'Servidor propio y seguridad',
                     'intro' => 'Tus datos financieros y administrativos siempre protegidos y accesibles.',
@@ -133,7 +133,7 @@
                 ],
                 [
                     'id' => 'portfolioModal5',
-                    'image' => 'assets/img/portfolio/5.jpg',
+                    'image' => 'assets/img/portfolio/5.png',
                     'title' => 'Web y Automatización',
                     'subtitle' => 'Digitaliza Fácil',
                     'intro' => 'La puerta de entrada para modernizar tu negocio desde cero.',
@@ -143,7 +143,7 @@
                 ],
                 [
                     'id' => 'portfolioModal6',
-                    'image' => 'assets/img/portfolio/6.jpg',
+                    'image' => 'assets/img/portfolio/6.png',
                     'title' => 'Gestión de Stock y Caja',
                     'subtitle' => 'Decisiones con datos claros',
                     'intro' => 'Centraliza ventas, gastos, inventario y clientes en un mismo lugar.',
@@ -301,34 +301,38 @@
                     <h2 class="section-heading text-uppercase">Contacto</h2>
                     <h3 class="section-subheading text-muted">Solicita una visita presencial para analizar las necesidades de tu negocio.</h3>
                 </div>
-                <form id="contactForm" novalidate>
+                <form id="contactForm" action="{{ route('contact.store') }}" method="POST" novalidate>
+                    @csrf
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="name" type="text" placeholder="Tu nombre *" required />
-                                <div class="invalid-feedback">Por favor, introduce tu nombre.</div>
+                                <input class="form-control @error('name') is-invalid @enderror" id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Tu nombre *" maxlength="120" required />
+                                <div class="invalid-feedback" data-default-error="Por favor, introduce tu nombre.">@error('name'){{ $message }}@else Por favor, introduce tu nombre. @enderror</div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="email" type="email" placeholder="Tu correo electrónico *" required />
-                                <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
+                                <input class="form-control @error('email') is-invalid @enderror" id="email" name="email" type="email" value="{{ old('email') }}" placeholder="Tu correo electrónico *" maxlength="190" required />
+                                <div class="invalid-feedback" data-default-error="Introduce un correo electrónico válido.">@error('email'){{ $message }}@else Introduce un correo electrónico válido. @enderror</div>
                             </div>
                             <div class="form-group mb-md-0">
-                                <input class="form-control" id="phone" type="tel" placeholder="Tu teléfono *" required />
-                                <div class="invalid-feedback">Por favor, introduce tu teléfono de contacto.</div>
+                                <input class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="Tu teléfono *" maxlength="40" required />
+                                <div class="invalid-feedback" data-default-error="Por favor, introduce tu teléfono de contacto.">@error('phone'){{ $message }}@else Por favor, introduce tu teléfono de contacto. @enderror</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
-                                <textarea class="form-control" id="message" placeholder="Cuéntanos sobre tu negocio y qué te gustaría mejorar *" required></textarea>
-                                <div class="invalid-feedback">Por favor, escribe un breve mensaje.</div>
+                                <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="Cuéntanos sobre tu negocio y qué te gustaría mejorar *" minlength="10" maxlength="2000" required>{{ old('message') }}</textarea>
+                                <div class="invalid-feedback" data-default-error="Por favor, escribe un breve mensaje (mínimo 10 caracteres).">@error('message'){{ $message }}@else Por favor, escribe un breve mensaje (mínimo 10 caracteres). @enderror</div>
                             </div>
                         </div>
                     </div>
-                    <div class="d-none" id="submitSuccessMessage">
+                    <div class="{{ session('contact_success') ? '' : 'd-none' }}" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
                             <div class="fw-bolder">¡Solicitud registrada!</div>
-                            Un asistente de NovaTech se pondrá en contacto contigo para concertar la visita presencial.
+                            <span id="submitSuccessText">{{ session('contact_success', 'Un asistente de NovaTech se pondrá en contacto contigo para concertar la visita presencial.') }}</span>
                         </div>
+                    </div>
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3" id="submitErrorText">No se pudo enviar la solicitud. Revisa los campos e inténtalo de nuevo.</div>
                     </div>
                     <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Solicitar visita</button></div>
                 </form>

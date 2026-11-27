@@ -163,3 +163,13 @@ section#contact form#contactForm .form-control:focus {
 .footer .link-dark:hover {
   color: #63991e !important;
 }
+
+section#contact .invalid-feedback {
+  color: #ffb4a8;
+}
+
+#portfolio .portfolio-item .portfolio-link img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
