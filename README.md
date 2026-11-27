@@ -40,37 +40,50 @@ git clone git@github.com:reptilAndaluz/NovaTech.git
 cd NovaTech
 ```
 
-### 2. Configurar variables de entorno
+### 2. Configurar variables de entorno (`.env`)
 
-#### a) Variables para Docker Compose (opcional)
-En la raíz del proyecto puedes crear un archivo `.env` (ignorado por Git) para personalizar las credenciales de MySQL que lee [docker-compose.yml](docker-compose.yml):
+El repositorio incluye plantillas `.env.example` (los archivos `.env` reales están ignorados por Git para no subir credenciales). Debes configurar dos archivos y asegurarte de que las credenciales de base de datos coinciden en ambos:
+
+#### a) `.env` en la raíz (para Docker Compose)
+Copia la plantilla de la raíz:
+
+```bash
+cp .env.example .env
+```
+
+Edita `.env` y define el nombre de la base de datos, el usuario y las contraseñas (no dejes `DB_PASSWORD` ni `DB_ROOT_PASSWORD` vacíos o MySQL no arrancará):
 
 ```env
 DB_DATABASE=laravel
 DB_USERNAME=laravel
-DB_PASSWORD=secret
-DB_ROOT_PASSWORD=toor
+DB_PASSWORD=tu_password_segura
+DB_ROOT_PASSWORD=tu_root_password_segura
 ```
 
-*(Si no existe `.env` en la raíz, `docker-compose.yml` usa por defecto `laravel` / `laravel` / `secret` / `toor`.)*
+*(Si no creas `.env` en la raíz, `docker-compose.yml` usará por defecto `laravel` / `laravel` / `secret` / `toor`.)*
 
-#### b) Variables de Laravel (`html/.env`)
+#### b) `html/.env` (para Laravel)
 Copia la plantilla de entorno de Laravel dentro de `html/`:
 
 ```bash
 cp html/.env.example html/.env
 ```
 
-Asegúrate de configurar la conexión hacia el servicio `mysql` en `html/.env` (usando los mismos valores definidos para el contenedor MySQL):
+Edita `html/.env` para que `DB_DATABASE`, `DB_USERNAME` y `DB_PASSWORD` coincidan exactamente con los de la raíz (si la contraseña tiene espacios, envuélvela entre comillas dobles `"..."`). El campo `APP_KEY=` se rellenará automáticamente en el paso 4 con `php artisan key:generate`:
 
 ```env
+APP_NAME=NovaTech
+APP_URL=http://localhost:8181
+
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=laravel
-DB_PASSWORD=secret
+DB_PASSWORD=tu_password_segura
 ```
+
+> **Importante:** cambia las contraseñas en ambos `.env` **antes** de ejecutar `docker compose up` por primera vez, ya que MySQL solo crea el usuario y la contraseña cuando se inicializa el volumen `mysql_data`.
 
 ### 3. Construir y levantar los contenedores
 
