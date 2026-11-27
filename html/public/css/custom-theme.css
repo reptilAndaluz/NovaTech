@@ -1,0 +1,165 @@
+/* Paleta inspirada en la infografía: verde bosque, verde lima y crema cálido */
+:root {
+  --bs-primary: #79b729;
+  --bs-primary-rgb: 121, 183, 41;
+  --bs-secondary: #556456;
+  --bs-secondary-rgb: 85, 100, 86;
+  --bs-success: #79b729;
+  --bs-success-rgb: 121, 183, 41;
+  --bs-warning: #e8f0be;
+  --bs-warning-rgb: 232, 240, 190;
+  --bs-danger: #c94b38;
+  --bs-danger-rgb: 201, 75, 56;
+  --bs-light: #f3eedb;
+  --bs-light-rgb: 243, 238, 219;
+  --bs-dark: #19321c;
+  --bs-dark-rgb: 25, 50, 28;
+  --bs-body-bg: #faf8ee;
+  --bs-body-bg-rgb: 250, 248, 238;
+  --bs-body-color: #1c261d;
+  --bs-body-color-rgb: 28, 38, 29;
+  --bs-border-color: #dcd6be;
+  --bs-link-color: #63991e;
+  --bs-link-hover-color: #4d7816;
+  --bs-highlight-bg: #e8f0be;
+}
+
+body {
+  background-color: #faf8ee;
+  color: #1c261d;
+}
+
+.text-primary {
+  color: #79b729 !important;
+}
+
+.text-muted {
+  color: #556456 !important;
+}
+
+.bg-light {
+  background-color: #f3eedb !important;
+}
+
+.bg-dark {
+  background-color: #19321c !important;
+}
+
+.btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #79b729;
+  --bs-btn-border-color: #79b729;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #63991e;
+  --bs-btn-hover-border-color: #58891a;
+  --bs-btn-focus-shadow-rgb: 121, 183, 41;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #58891a;
+  --bs-btn-active-border-color: #4d7816;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #79b729;
+  --bs-btn-disabled-border-color: #79b729;
+}
+
+.btn-dark {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #19321c;
+  --bs-btn-border-color: #19321c;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #79b729;
+  --bs-btn-hover-border-color: #79b729;
+  --bs-btn-active-bg: #63991e;
+  --bs-btn-active-border-color: #63991e;
+}
+
+/* Navbar */
+#mainNav {
+  background-color: #19321c;
+}
+
+#mainNav .navbar-toggler {
+  background-color: #79b729;
+  color: #ffffff;
+}
+
+#mainNav .navbar-brand {
+  color: #79b729;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+  color: #faf8ee;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover {
+  color: #8fd136;
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    background-color: transparent;
+  }
+  #mainNav.navbar-shrink {
+    background-color: #19321c;
+  }
+}
+
+/* Hero / Masthead */
+header.masthead {
+  background-image: linear-gradient(rgba(20, 38, 23, 0.62), rgba(20, 38, 23, 0.72)), url("../assets/img/header-bg.jpg");
+}
+
+/* Portfolio */
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(121, 183, 41, 0.9);
+}
+
+#portfolio .portfolio-item .portfolio-caption {
+  background-color: #fcfbf5;
+  border-top: 1px solid #e6e2cd;
+}
+
+/* Timeline (About) */
+.timeline:before {
+  background-color: #d8e2bd;
+}
+
+.timeline > li .timeline-image {
+  background-color: #79b729;
+  border-color: #e8f0be;
+  color: #ffffff;
+}
+
+/* Team */
+.team-member img {
+  border-color: rgba(25, 50, 28, 0.16);
+}
+
+/* Contact */
+section#contact {
+  background-color: #19321c;
+}
+
+section#contact form#contactForm .form-control:focus {
+  border-color: #79b729;
+  box-shadow: 0 0 0 0.2rem rgba(121, 183, 41, 0.25);
+}
+
+/* Modals & Footer */
+.portfolio-modal .modal-content {
+  background-color: #faf8ee;
+  color: #1c261d;
+}
+
+.footer {
+  background-color: #faf8ee;
+  border-top: 1px solid #e6e2cd;
+}
+
+.footer .link-dark {
+  color: #19321c !important;
+}
+
+.footer .link-dark:hover {
+  color: #63991e !important;
+}
