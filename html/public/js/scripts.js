@@ -52,3 +52,23 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+// Validación simple del formulario de contacto
+window.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contactForm");
+    const successMessage = document.getElementById("submitSuccessMessage");
+    if (!contactForm) return;
+
+    contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!contactForm.checkValidity()) {
+            contactForm.classList.add("was-validated");
+            return;
+        }
+        contactForm.classList.remove("was-validated");
+        contactForm.reset();
+        if (successMessage) {
+            successMessage.classList.remove("d-none");
+        }
+    });
+});
